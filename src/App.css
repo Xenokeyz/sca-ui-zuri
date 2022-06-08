@@ -330,6 +330,10 @@ body {
   width: 100%;
 }
 
+.message-form .input input {
+  padding-right: calc(71.13px + 1rem);
+}
+
 .message-form .button {
   position: absolute;
   right: 0.3rem;

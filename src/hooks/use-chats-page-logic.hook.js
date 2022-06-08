@@ -32,7 +32,7 @@ export const useChatsPageLogic = () => {
           if (_user.user.id === user.id) {
             return { ..._user, user };
           }
-          return { ..._user };
+          return _user;
         });
 
         setUsers(clone);
@@ -49,6 +49,9 @@ export const useChatsPageLogic = () => {
           }
           return true;
         });
+        if (!newUser) {
+          return;
+        }
 
         setUsers([newUser, ...newUsers]);
       });

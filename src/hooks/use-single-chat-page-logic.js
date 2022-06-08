@@ -1,3 +1,4 @@
+import uniqBy from "lodash.uniqby";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import $api from "../shared/api";
@@ -76,7 +77,9 @@ export const useSingleChatPageLogic = () => {
       });
       socket.on("NEW_MESSAGE", ({ message, sender: _sender }) => {
         if (_sender.id === sender?.id) {
-          setMessages((messages) => [...messages, message]);
+          setMessages((messages) =>
+            uniqBy([...messages, message], (m) => m.id)
+          );
         }
       });
       socket.on("USER_DELETE", (user) => {

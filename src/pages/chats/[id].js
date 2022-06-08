@@ -55,8 +55,9 @@ const SingleChatPage = () => {
         })}
       </div>
 
-      <form className="message-form" onSubmit={handleSubmit}>
+      <form autoComplete="off" className="message-form" onSubmit={handleSubmit}>
         <Input
+          autoComplete="off"
           name="message"
           value={values.message}
           onChange={handleChange}

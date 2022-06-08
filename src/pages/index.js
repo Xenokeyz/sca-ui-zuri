@@ -7,10 +7,10 @@ import { useStartPageLogic } from "../hooks/use-start-page-logic.hook";
 
 const StartPage = (props) => {
   const { user } = props;
-  const { handleChange, handleSubmit } = useStartPageLogic(props);
+  const { redirect, handleChange, handleSubmit } = useStartPageLogic(props);
 
   if (user) {
-    return <Navigate replace to="/chats" />;
+    return <Navigate replace to={redirect} />;
   }
 
   return (
@@ -25,7 +25,7 @@ const StartPage = (props) => {
         </Text>
       </Container>
       <Container className="form">
-        <form className="start-form" onSubmit={handleSubmit}>
+        <form autoComplete="off" className="start-form" onSubmit={handleSubmit}>
           <Input
             label="Choose a username"
             required
@@ -33,6 +33,7 @@ const StartPage = (props) => {
             onChange={handleChange}
             minLength="3"
             placeholder="Username"
+            autoComplete="off"
           />
           <Button>Start Chatting</Button>
         </form>

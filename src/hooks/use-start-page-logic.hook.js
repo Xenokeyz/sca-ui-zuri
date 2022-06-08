@@ -1,8 +1,10 @@
 import jsCookie from "js-cookie";
+import { useSearchParams } from "react-router-dom";
 import $api from "../shared/api";
 import { useFormHandlers } from "./use-form-handlers.hook";
 
 export const useStartPageLogic = (props) => {
+  const [searchParams] = useSearchParams();
   const { setUser } = props;
   const onSubmit = async (values) => {
     try {
@@ -15,5 +17,9 @@ export const useStartPageLogic = (props) => {
   };
   const { handleChange, handleSubmit } = useFormHandlers({ onSubmit });
 
-  return { handleChange, handleSubmit };
+  return {
+    redirect: searchParams.get("redirect") || "/chats",
+    handleChange,
+    handleSubmit,
+  };
 };
